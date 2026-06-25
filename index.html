@@ -268,7 +268,6 @@
                 <span>TUG: 语文双人赛</span>
                 <span class="gamepad-icon">🎮</span>
             </div>
-            <button class="home-btn" onclick="toggleMusic()">🎵 音乐</button>
             <div class="winner-badge-box">
                 <div class="winner-text-badge">WINNER<br>WINNER</div>
                 <span class="trophy-icon">🏆</span>
@@ -396,49 +395,22 @@
 
         window.addEventListener('DOMContentLoaded', async () => {
 
-            try {
-                await loadDefaultCSV();
-            } catch (e) {
-                console.log('未发现 questions.csv');
-            }
+    try {
 
-            try {
-                const savedBank = localStorage.getItem('tugOfWarQuizBank');
-                if (savedBank) { globalCSVBank = JSON.parse(savedBank); }
-            } catch (e) { console.error(e); }
+        await loadDefaultCSV();
 
-            updateFileStatus();
-        });
+        updateFileStatus();
 
-        
-        async function loadDefaultCSV() {
-            const response = await fetch('questions.csv');
-            if (!response.ok) throw new Error('questions.csv not found');
+    } catch (e) {
 
-            const text = await response.text();
-            const lines = text.split(/\r\n|\n/);
+        console.error(e);
 
-            globalCSVBank = [];
+        alert("无法读取 questions.csv");
 
-            for (let i = 1; i < lines.length; i++) {
-                let line = lines[i].trim();
-                if (!line) continue;
+    }
 
-                let parts = line.split(',');
-
-                if (parts.length >= 3) {
-                    globalCSVBank.push({
-                        grade: parts[0].trim(),
-                        category: parts[1].trim(),
-                        content: parts[2].trim()
-                    });
-                }
-            }
-
-            console.log('自动加载题库成功：', globalCSVBank.length, '题');
-        }
-
-function updateFileStatus() {
+});
+        function updateFileStatus() {
             const statusEl = document.getElementById('file-status');
             if (globalCSVBank && globalCSVBank.length > 0) {
                 statusEl.innerHTML = `✅ 已加载云端记忆元件！(共 ${globalCSVBank.length} 题) [点击覆盖]`;
@@ -449,8 +421,9 @@ function updateFileStatus() {
             }
         }
 
-        function saveToLocalStorage() {
-            try {
+       function saveToLocalStorage() {
+    updateFileStatus();
+}            try {
                 localStorage.setItem('tugOfWarQuizBank', JSON.stringify(globalCSVBank));
                 updateFileStatus();
             } catch (e) { console.error(e); }
@@ -570,12 +543,6 @@ function updateFileStatus() {
         }
 
         function startGame() {
-
-            const bgm = document.getElementById('bgm');
-            if (bgm) {
-                bgm.volume = 0.4;
-                bgm.play().catch(()=>{});
-            }
             syncTextareaToGlobal();
             if(!parseInput()) return;
             
@@ -799,18 +766,6 @@ function updateFileStatus() {
             document.getElementById('winner-text').innerText = winnerText;
             document.getElementById('winner-text').style.color = blueScore > redScore ? 'var(--blue-glow)' : (redScore > blueScore ? 'var(--red-glow)' : '#fff');
         }
-    
-        function toggleMusic(){
-            const bgm = document.getElementById('bgm');
-            if(!bgm) return;
-            if(bgm.paused){ bgm.play(); }
-            else{ bgm.pause(); }
-        }
     </script>
-
-<audio id="bgm" loop preload="auto">
-    <source src="bgm.mp3" type="audio/mpeg">
-</audio>
-
 </body>
 </html>
