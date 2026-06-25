@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TUG: 语文双人对抗赛 - 电竞炫彩版</title>
+    <title>TUG: 语文双人对抗赛 - 电竞炫彩音乐版</title>
     <style>
         :root {
             --cyber-bg: #060919;
@@ -253,6 +253,8 @@
 </head>
 <body>
 
+    <audio id="bgm-player" src="bgm.mp3" loop></audio>
+
     <div class="arcade-frame">
         <div class="arcade-header">
             <button class="home-btn" onclick="location.reload()">🏠 主页</button>
@@ -375,11 +377,11 @@
 
     <script>
         // ==========================================
-        // 🚨 核心配置区：请把下面 URL 换成你 GitHub 上的真实 CSV 公开直连路径
+        // 🚀 相对路径加载机制：免配置，直接读取仓库同级 question.csv
         // ==========================================
-const GITHUB_CSV_URL = "question.csv";
+        const GITHUB_CSV_URL = "question.csv";
 
-        const commonChars = "天地玄黄宇宙洪荒日月盈仄辰宿列张寒来暑往秋收冬藏闰余成岁律吕调阳云腾致雨露结为霜金生丽水玉出昆冈剑号巨阙珠称夜光果珍李柰菜重芥姜海咸河淡鳞潜羽翔龙师火帝鸟官人皇始制文字乃服衣裳推位让国有虞陶唐吊民伐罪周发殷汤坐朝问道垂拱平章爱育黎首臣伏戎羌遐迩一体率宾归王鸣凤在竹白驹食场化被草木赖及万方盖此身发四大五常恭惟鞠养岂敢毁伤女慕贞洁男效才良知过必改得能莫忘罔谈彼短靡恃己长信使可覆器欲难量墨悲丝染诗赞羔羊景行维贤克念作圣德建名立形端表正空谷传声虚堂习听祸因恶积福缘善庆尺璧非宝寸阴是竞资父事君曰严与敬孝当竭力忠则尽命临深履薄夙兴温凊似兰斯馨如松之盛川流不息渊澄取映容止若思言辞安定笃初诚美慎终宜令荣业所基籍甚无竟学优登仕摄职从政存以甘棠去而益咏乐殊贵贱礼别尊卑上和下睦夫唱妇随外受傅训入奉母仪诸姑伯叔犹子比儿孔怀兄弟同气连枝交友投分切磨箴规仁慈隐恻造次弗离节义廉退颠沛匪亏性静情逸心动神疲守真志满逐物意移坚持雅操好爵自縻都邑华夏东西二京背邙面洛浮渭据泾宫殿盘郁楼观飞惊图写禽兽画彩仙灵丙舍傍启甲帐对楹肆筵设席鼓瑟吹笙升阶纳陛弁转疑星右通广内左达承明既集坟典亦聚群英杜稿钟隶漆书壁经府罗将相路侠槐卿户封八县家给千兵高冠陪辇驱毂振缨世禄侈富车驾肥轻策功茂实勒碑刻铭磻溪伊尹佐时阿衡奄宅曲阜微旦孰营桓公匡合济弱扶倾绮回汉惠说感武丁俊乂密勿多士寔宁晋楚更霸赵魏困横假途灭虢践土会盟何遵约法韩弊烦刑起翦颇牧用军最精宣威沙漠驰誉丹青九州禹迹百郡秦并岳宗泰岱禅主云亭雁门紫塞鸡田赤城昆池碣石巨野洞庭旷远绵邈岩岫杳冥治本于农务兹稼瑎俶载南亩我艺黍稷税熟贡新劝赏黜陟孟轲敦素史鱼秉直庶几中庸劳谦谨敕聆音察理鉴貌辨色贻厥嘉猷勉其祗植省躬讥诫宠增抗极殆辱近耻林皋幸即两疏见机解组谁逼索居闲处沉默寂寥求古寻论散虑逍遥欣奏累遣戚谢欢招渠荷的历园莽抽条";
+        const commonChars = "天地玄黄宇宙洪荒日月盈仄辰宿列张寒来暑往秋收冬藏闰余成岁律吕调阳云腾致雨露结为霜金生丽水玉出昆冈剑号巨阙珠称夜光果珍李柰菜重芥姜海咸河淡鳞潜羽翔龙师火帝鸟官人皇始制文字乃服衣裳推位让国有虞陶唐吊民伐罪周发殷汤坐朝问道垂拱平章爱育黎首臣伏戎羌遐迩一体率宾归王鸣凤在竹白驹食场化被草木赖及万方盖此身发四大五常恭惟鞠养岂敢毁伤女慕贞洁男效才良知过必改得能莫忘罔谈彼短靡恃己长信使可覆器欲难量墨悲丝染诗赞羔羊景行维贤克念作圣德建名立形端表正空谷传声虚堂习听祸因恶积福缘善庆尺璧非宝寸阴是竞资父事君曰严与敬孝当竭力忠则尽命临深履薄夙兴温凊似兰斯馨如松之盛川流不息渊澄取映容止若思言辞安定笃初诚美慎终意令荣业所基籍甚无竟学优登仕摄职从政存以甘棠去而益咏乐殊贵贱礼别尊卑上和下睦夫唱谱随外受傅训入奉母仪诸姑伯叔犹子比儿孔怀兄弟同气连枝交友投分切磨箴规仁慈隐恻造次弗离节义廉退颠沛匪亏性静情逸心动神疲守真志满逐物意移坚持雅操好爵自縻都邑华夏东西二京背邙面洛浮渭据泾宫殿盘郁楼观飞惊图写禽兽画彩仙灵丙舍傍启甲帐对楹肆筵设席鼓瑟吹笙升阶纳陛弁转疑星右通广内left达承明既集坟典亦聚群英杜稿钟隶漆书壁经府罗将相路侠槐卿户封八县家给千兵高冠陪辇驱毂振缨世禄侈富车驾肥轻策功茂实勒碑刻铭磻溪伊尹佐时阿衡奄宅曲阜微旦孰营桓公匡合济弱扶倾绮回汉惠说感武丁俊乂密勿多士寔宁晋楚更霸赵魏困横假途灭虢践土会盟何遵约法韩弊烦刑起翦颇牧用军最精宣威沙漠驰誉丹青九州禹迹百郡秦并岳宗泰岱禅主云亭雁门紫塞鸡田赤城昆池碣石巨野洞庭旷远绵邈岩岫杳冥治本于农务兹稼瑎俶载南亩我艺黍稷税熟贡新劝赏黜陟孟轲敦素史鱼秉直庶几中庸劳谦谨敕聆音察理鉴貌辨色贻厥嘉猷勉其祗植省躬讥诫宠增抗极殆辱近耻林皋幸即两疏见机解组谁逼索居闲处沉默寂寥求古寻论散虑逍遥欣奏累遣戚谢欢招渠荷的历园莽抽条";
         
         let globalCSVBank = []; 
         let parsedList = [];
@@ -395,15 +397,9 @@ const GITHUB_CSV_URL = "question.csv";
             loadRemoteCSV();
         });
 
-        // 强力去缓存云端异步数据加载
+        // 强力去缓存异步数据加载
         async function loadRemoteCSV() {
             const statusEl = document.getElementById('file-status');
-            if (!GITHUB_CSV_URL || GITHUB_CSV_URL.includes("你的用户名")) {
-                statusEl.innerHTML = `⚠️ 请在 index.html 源码第 201 行配置你的 GITHUB_CSV_URL 云端路径！`;
-                statusEl.style.color = "#ff0055";
-                return;
-            }
-            
             statusEl.innerHTML = `⏳ 正在请求云端矩阵，实时同步最新题库源...`;
             statusEl.style.color = "#00e5ff";
             
@@ -429,14 +425,13 @@ const GITHUB_CSV_URL = "question.csv";
                     }
                 }
                 
-                statusEl.innerHTML = `✅ 云端同步大成功！(已全量热加载 ${globalCSVBank.length} 道最新命题)`;
+                statusEl.innerHTML = `✅ 题库热同步成功！(已加载 ${globalCSVBank.length} 道最新命题)`;
                 statusEl.style.color = "#39ff14";
                 
-                // 本地同步更新备份，以防下次断网
                 localStorage.setItem('tugOfWarQuizBank', JSON.stringify(globalCSVBank));
                 if(currentGrade && currentCategory) updatePreviewUI();
             } catch (error) {
-                console.error("云端加载失败，尝试本地容错降级:", error);
+                console.error("云端加载失败，尝试本地记忆:", error);
                 statusEl.innerHTML = `❌ 远程拉取未应答。正在降级搜寻本地离线核心...`;
                 statusEl.style.color = "#ff0055";
                 
@@ -566,6 +561,13 @@ const GITHUB_CSV_URL = "question.csv";
             syncTextareaToGlobal();
             if(!parseInput()) return;
             
+            // 🎵 播放背景音乐逻辑
+            const bgm = document.getElementById('bgm-player');
+            if (bgm) {
+                bgm.currentTime = 0; // 从头播放
+                bgm.play().catch(e => console.log("音频播放受到限制:", e));
+            }
+
             document.getElementById('setup-screen').style.display = 'none';
             document.getElementById('game-screen').style.display = 'flex';
             
@@ -612,7 +614,6 @@ const GITHUB_CSV_URL = "question.csv";
 
         function getOptions(answerStr) {
             let options = answerStr.split('');
-            // 修改：备选字填满全部 12 格
             while(options.length < 12) {
                 let char = commonChars[Math.floor(Math.random() * commonChars.length)];
                 if(!options.includes(char)) options.push(char);
@@ -650,7 +651,6 @@ const GITHUB_CSV_URL = "question.csv";
             const container = document.getElementById(team + '-keyboard');
             container.innerHTML = '';
             
-            // 渲染全量 12 颗文字按键
             options.forEach(char => {
                 let btn = document.createElement('div');
                 btn.className = 'key'; btn.innerText = char;
@@ -659,7 +659,6 @@ const GITHUB_CSV_URL = "question.csv";
             });
         }
 
-        // 修改：高能触控单击即刻验证逻辑
         function addChar(team, char) {
             if(team === 'blue' && blueFrozen) return;
             if(team === 'red' && redFrozen) return;
@@ -672,16 +671,13 @@ const GITHUB_CSV_URL = "question.csv";
                 inputs[emptyIdx] = char;
                 renderSlots(team);
                 
-                // 核心单步实时核准：直接比对当前空位的标准目标字
                 if(char === qData.a[emptyIdx]) {
-                    // 如果单字正确，且所有空位均已被填满
                     if(!inputs.includes('')) {
                         if(team === 'blue') blueScore++; else redScore++;
                         showFlash(team, true); updateScores(); updateRope(); checkWin();
                         setTimeout(() => loadQuestion(team), 150);
                     }
                 } else {
-                    // 一旦选错，斩断输入链并瞬间冻结 2 秒
                     if(team === 'blue') {
                         blueScore = Math.max(0, blueScore - 1);
                         blueFrozen = true;
@@ -733,6 +729,11 @@ const GITHUB_CSV_URL = "question.csv";
 
         function endGame() {
             clearInterval(timerInterval);
+
+            // 🎵 关闭背景音乐
+            const bgm = document.getElementById('bgm-player');
+            if (bgm) { bgm.pause(); }
+
             document.getElementById('result-screen').style.display = 'flex';
             document.getElementById('final-blue').innerText = blueScore;
             document.getElementById('final-red').innerText = redScore;
