@@ -393,23 +393,14 @@
         let blueCurrentInput = [], redCurrentInput = [];
         let blueFrozen = false, redFrozen = false;
 
-        window.addEventListener('DOMContentLoaded', async () => {
+        window.addEventListener('DOMContentLoaded', () => {
+            try {
+                const savedBank = localStorage.getItem('tugOfWarQuizBank');
+                if (savedBank) { globalCSVBank = JSON.parse(savedBank); }
+            } catch (e) { console.error(e); }
+            updateFileStatus();
+        });
 
-    try {
-
-        await loadDefaultCSV();
-
-        updateFileStatus();
-
-    } catch (e) {
-
-        console.error(e);
-
-        alert("无法读取 questions.csv");
-
-    }
-
-});
         function updateFileStatus() {
             const statusEl = document.getElementById('file-status');
             if (globalCSVBank && globalCSVBank.length > 0) {
@@ -421,9 +412,8 @@
             }
         }
 
-       function saveToLocalStorage() {
-    updateFileStatus();
-}            try {
+        function saveToLocalStorage() {
+            try {
                 localStorage.setItem('tugOfWarQuizBank', JSON.stringify(globalCSVBank));
                 updateFileStatus();
             } catch (e) { console.error(e); }
