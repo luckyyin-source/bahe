@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TUG: 语文双人对抗赛 - 电竞炫彩音乐版</title>
+    <title>TUG: 语文双人对抗赛 - 电竞炫彩图片版</title>
     <style>
         :root {
             --cyber-bg: #060919;
@@ -55,8 +55,11 @@
             text-shadow: 0 0 10px #00e5ff, 0 0 20px #00838f;
             letter-spacing: 4px; display: flex; align-items: center; gap: 15px;
         }
+        
+        /* 游戏柄图片自适应控制 */
         .gamepad-icon {
-            font-size: 32px; filter: drop-shadow(0 0 8px var(--blue-glow));
+            width: 42px; height: 42px; object-fit: contain;
+            filter: drop-shadow(0 0 8px var(--blue-glow));
             animation: controller-float 2s infinite alternate;
         }
         @keyframes controller-float {
@@ -76,7 +79,6 @@
             box-shadow: 0 0 15px #ffaa00; border: 2px solid #fff;
             line-height: 1.1; text-align: center;
         }
-        .trophy-icon { font-size: 30px; filter: drop-shadow(0 0 8px #ffaa00); }
 
         /* 通用返回/主页按钮 */
         .home-btn {
@@ -94,37 +96,55 @@
         }
         .top-bar { width: 100%; padding: 20px; display: flex; justify-content: center; }
         .upload-box {
-            display: flex; align-items: center; gap: 15px; background: rgba(0, 229, 255, 0.05);
-            border: 2px dashed var(--blue-glow); padding: 12px 40px; border-radius: 15px;
-            cursor: pointer; transition: 0.2s; box-shadow: inset 0 0 15px rgba(0,229,255,0.05);
+            display: flex; align-items: center; gap: 15px; background: rgba(255, 152, 0, 0.1);
+            border: 2px dashed #ff9800; padding: 12px 40px; border-radius: 15px;
+            cursor: pointer; transition: 0.2s; box-shadow: inset 0 0 15px rgba(255,98,0,0.1);
         }
-        .upload-box:hover { background: rgba(0,229,255,0.1); transform: scale(1.02); }
-        .upload-title { font-size: 20px; font-weight: bold; color: var(--blue-glow); }
-        .upload-sub { font-size: 14px; color: #a2f5ff; }
+        .upload-box:hover { background: rgba(255,152,0,0.2); transform: scale(1.02); }
+        .upload-title { font-size: 20px; font-weight: bold; color: #ffb74d; }
+        .upload-sub { font-size: 14px; color: #ffa726; }
 
-        .middle-container { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-        .step-section { display: flex; flex-direction: column; align-items: center; animation: popIn 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28); }
+        .middle-container { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow-y: auto; padding: 20px; }
+        .step-section { display: flex; flex-direction: column; align-items: center; animation: popIn 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28); width: 100%; }
         @keyframes popIn { 0% { opacity: 0; transform: scale(0.95); } 100% { opacity: 1; transform: scale(1); } }
-        .step-title { font-size: 36px; color: #fff; margin-bottom: 30px; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        .step-title { font-size: 34px; color: #fff; margin-bottom: 25px; text-shadow: 0 0 10px rgba(255,255,255,0.5); text-align: center; }
         
-        .blocks-container { display: flex; gap: 25px; justify-content: center; flex-wrap: wrap; }
+        /* 通用按钮基础容器 */
+        .blocks-container { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; max-width: 850px; }
+        
+        /* ✨ 核心修改：强制将六个年级排列为 3列 × 2排 布局 */
+        .grid-grade-layout {
+            display: grid !important;
+            grid-template-columns: repeat(3, 180px);
+            grid-template-rows: repeat(2, 100px);
+            gap: 20px;
+            justify-content: center;
+        }
+
         .btn-3d {
-            width: 200px; height: 110px; border: none; border-radius: 15px;
-            font-size: 30px; font-weight: bold; color: white; cursor: pointer;
+            position: relative; width: 180px; height: 100px; border: none; border-radius: 15px;
+            font-size: 26px; font-weight: bold; color: white; cursor: pointer;
             transition: all 0.2s; text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
         .btn-3d:hover { transform: translateY(-5px); filter: brightness(1.2); }
-        .btn-g4 { background: #1565c0; border: 2px solid #2196f3; box-shadow: 0 0 15px rgba(33,150,243,0.4); }
-        .btn-g5 { background: #2e7d32; border: 2px solid #4caf50; box-shadow: 0 0 15px rgba(76,175,80,0.4); }
+        
+        /* 年级特色炫彩 */
+        .btn-g1 { background: #b71c1c; border: 2px solid #ef5350; box-shadow: 0 0 15px rgba(239,83,80,0.4); }
+        .btn-g2 { background: #e65100; border: 2px solid #ff9800; box-shadow: 0 0 15px rgba(255,152,0,0.4); }
+        .btn-g3 { background: #006064; border: 2px solid #00bcd4; box-shadow: 0 0 15px rgba(0,188,212,0.4); }
+        .btn-g4 { background: #2e7d32; border: 2px solid #4caf50; box-shadow: 0 0 15px rgba(76,175,80,0.4); }
+        .btn-g5 { background: #1565c0; border: 2px solid #2196f3; box-shadow: 0 0 15px rgba(33,150,243,0.4); }
         .btn-g6 { background: #6a1b9a; border: 2px solid #9c27b0; box-shadow: 0 0 15px rgba(156,39,176,0.4); }
+        
+        /* 关卡特色颜色 */
         .btn-c1 { background: #c2185b; border: 2px solid #e91e63; box-shadow: 0 0 15px rgba(233,30,99,0.4); }
-        .btn-c2 { background: #e65100; border: 2px solid #ff9800; box-shadow: 0 0 15px rgba(255,152,0,0.4); }
+        .btn-c2 { background: #ff6f00; border: 2px solid #ffb300; box-shadow: 0 0 15px rgba(255,179,0,0.4); }
         .btn-c3 { background: #00838f; border: 2px solid #00bcd4; box-shadow: 0 0 15px rgba(0,188,212,0.4); }
         .btn-c4 { background: #4e342e; border: 2px solid #795548; box-shadow: 0 0 15px rgba(121,85,72,0.4); }
 
         .preview-box { background: var(--cyber-panel); padding: 30px; border-radius: 15px; border: 2px solid #1e295d; width: 750px; max-width: 95%; text-align: center; }
         .preview-box textarea { width: 100%; height: 180px; padding: 12px; font-size: 16px; border-radius: 8px; background: #060919; color: #fff; border: 1px solid #1e295d; resize: none; margin-bottom: 15px; }
-        .hint { font-size: 14px; color: #aaa; margin-bottom: 15px; text-align: left; background: rgba(0,0,0,0.3); padding: 12px; border-radius: 8px; border-left: 4px solid var(--blue-glow); }
+        .hint { font-size: 14px; color: #aaa; margin-bottom: 15px; text-align: left; background: rgba(0,0,0,0.3); padding: 12px; border-radius: 8px; border-left: 4px solid var(--blue-glow); line-height: 1.5; }
         
         button.action-btn { color: white; border: none; padding: 12px 25px; font-size: 18px; border-radius: 25px; cursor: pointer; transition: 0.2s; font-weight: bold; }
         button.start-btn { background: linear-gradient(90deg, #00c853, #b2ff59); color: #000; box-shadow: 0 0 15px #00c853; }
@@ -132,115 +152,79 @@
 
         /* 2. 游戏主界面面板 */
         #game-screen { display: none; width: 100%; flex: 1; gap: 15px; overflow: hidden; }
-        
-        .panel { 
-            background: var(--cyber-panel); border-radius: 16px; 
-            display: flex; flex-direction: column; overflow: hidden; position: relative;
-        }
-        
-        /* 独立赛博蓝队与红队框体 */
+        .panel { background: var(--cyber-panel); border-radius: 16px; display: flex; flex-direction: column; overflow: hidden; position: relative; }
         .player-panel { flex: 1.1; }
         .blue-side { border: 3px solid var(--blue-glow); box-shadow: 0 0 20px rgba(0,229,255,0.25), inset 0 0 15px rgba(0,229,255,0.15); }
         .red-side { border: 3px solid var(--red-glow); box-shadow: 0 0 20px rgba(255,0,85,0.25), inset 0 0 15px rgba(255,0,85,0.15); }
 
-        .player-header { 
-            padding: 12px 20px; font-size: 26px; font-weight: 900; display: flex; 
-            justify-content: space-between; align-items: center; border-bottom: 2px solid rgba(255,255,255,0.05);
-        }
+        .player-header { padding: 12px 20px; font-size: 26px; font-weight: 900; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid rgba(255,255,255,0.05); }
         .blue-side .player-header { background: linear-gradient(90deg, var(--blue-dark), transparent); color: var(--blue-glow); }
         .red-side .player-header { background: linear-gradient(270deg, var(--red-dark), transparent); color: var(--red-glow); }
         
-        .score-circle { 
-            background: #060919; width: 45px; height: 45px; border-radius: 50%; 
-            display: flex; justify-content: center; align-items: center; font-size: 24px; font-weight: bold;
-        }
+        .score-circle { background: #060919; width: 45px; height: 45px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 24px; font-weight: bold; }
         .blue-side .score-circle { border: 2px solid var(--blue-glow); color: var(--blue-glow); box-shadow: 0 0 10px var(--blue-glow); }
         .red-side .score-circle { border: 2px solid var(--red-glow); color: var(--red-glow); box-shadow: 0 0 10px var(--red-glow); }
         
         /* 题目显示区 */
-        .question-area { 
-            flex: 1; display: flex; flex-direction: column; justify-content: center; 
-            align-items: center; padding: 15px; font-size: 40px; font-weight: bold; letter-spacing: 2px; text-align: center; 
-        }
+        .question-area { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 15px; font-size: 40px; font-weight: bold; letter-spacing: 2px; text-align: center; }
         .blue-side .question-area { background: var(--blue-bg); color: #fff; }
         .red-side .question-area { background: var(--red-bg); color: #fff; }
         
         /* 输入槽位样式 */
         .answer-slots { display: flex; gap: 8px; margin-top: 15px; height: 50px; }
-        .slot { 
-            width: 140px; height: 48px; border: 2px solid #2e3975; background: rgba(0,0,0,0.4);
-            border-radius: 8px; font-size: 28px; display: flex; justify-content: center; 
-            align-items: center; cursor: default; font-weight: bold; transition: 0.15s;
-        }
+        .slot { width: 140px; height: 48px; border: 2px solid #2e3975; background: rgba(0,0,0,0.4); border-radius: 8px; font-size: 28px; display: flex; justify-content: center; align-items: center; cursor: pointer; font-weight: bold; transition: 0.15s; }
         .blue-side .slot { border-color: rgba(0,229,255,0.4); color: var(--blue-glow); }
         .red-side .slot { border-color: rgba(255,0,85,0.4); color: var(--red-glow); }
+        .slot:hover { background: rgba(255,255,255,0.05); }
         
-        /* 游戏按钮数字键 */
+        /* 虚拟键盘区 */
         .keyboard { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 15px; background: rgba(0,0,0,0.2); }
-        .key { 
-            background: #141a3c; border: 1px solid #252f69; border-radius: 10px; 
-            font-size: 26px; font-weight: bold; padding: 14px 0; display: flex; 
-            justify-content: center; align-items: center; cursor: pointer; color: #fff;
-            user-select: none; transition: all 0.1s; box-shadow: 0 3px 0 #090d22;
-        }
+        .key { background: #141a3c; border: 1px solid #252f69; border-radius: 10px; font-size: 26px; font-weight: bold; padding: 14px 0; display: flex; justify-content: center; align-items: center; cursor: pointer; color: #fff; user-select: none; transition: all 0.1s; box-shadow: 0 3px 0 #090d22; }
         .key:active { transform: translateY(3px); box-shadow: none; }
         .blue-side .key:hover { border-color: var(--blue-glow); box-shadow: 0 0 10px rgba(0,229,255,0.3); color: var(--blue-glow); }
         .red-side .key:hover { border-color: var(--red-glow); box-shadow: 0 0 10px rgba(255,0,85,0.3); color: var(--red-glow); }
 
+        .key.key-clear { background: #5c1024; border-color: #ff0055; color: #ff80ab; }
+        .key.key-clear:hover { box-shadow: 0 0 15px #ff0055 !important; color: #fff; }
+        .key.key-enter { background: #005662; border-color: #00e5ff; color: #b2f5ff; }
+        .key.key-enter:hover { box-shadow: 0 0 15px #00e5ff !important; color: #fff; }
+
         /* 3. 中央竞技大屏区 */
         .center-panel { flex: 1.4; border: 2px solid #1e295d; box-shadow: inset 0 0 20px rgba(0,0,0,0.6); background: #090c24; }
-        
-        /* 发光电子数码管计时器 */
-        .timer-header { 
-            background: rgba(0,0,0,0.4); padding: 10px; border-bottom: 2px solid #141c46;
-            display: flex; justify-content: space-around; align-items: center; font-size: 16px; font-weight: bold;
-        }
+        .timer-header { background: rgba(0,0,0,0.4); padding: 10px; border-bottom: 2px solid #141c46; display: flex; justify-content: space-around; align-items: center; font-size: 16px; font-weight: bold; }
         .center-team-tag { font-size: 14px; color: #7f8fa6; }
         .center-team-score { font-size: 24px; font-weight: 900; }
         #blue-score-center { color: var(--blue-glow); text-shadow: 0 0 8px var(--blue-glow); }
         #red-score-center { color: var(--red-glow); text-shadow: 0 0 8px var(--red-glow); }
         
-        .digital-clock {
-            font-family: 'Courier New', Courier, monospace; font-size: 32px; 
-            color: var(--neon-green); text-shadow: 0 0 12px var(--neon-green); 
-            background: #000; padding: 2px 16px; border-radius: 6px; border: 1px solid #113c0b;
-        }
+        .digital-clock { font-family: 'Courier New', Courier, monospace; font-size: 32px; color: var(--neon-green); text-shadow: 0 0 12px var(--neon-green); background: #000; padding: 2px 16px; border-radius: 6px; border: 1px solid #113c0b; }
 
-        /* 拔河游戏主战场 */
-        .tug-container { 
-            flex: 1; position: relative; display: flex; align-items: center; justify-content: center;
-            background-image: 
-                linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
-            background-size: 20px 20px; overflow: hidden;
-        }
+        /* 拔河网格主战场 */
+        .tug-container { flex: 1; position: relative; display: flex; align-items: center; justify-content: center; background-image: linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px); background-size: 20px 20px; overflow: hidden; }
         .center-line { position: absolute; left: 50%; top: 0; bottom: 0; width: 0px; border-left: 2px dashed rgba(255,255,255,0.3); transform: translateX(-50%); z-index: 1; }
         
-        /* 升级：激光脉冲能量绳索 */
+        /* 能量激光绳索 */
         .rope-area { position: absolute; width: 85%; height: 120px; display: flex; align-items: center; z-index: 2; transition: left 0.4s cubic-bezier(0.1, 0.8, 0.3, 1); left: 50%; transform: translateX(-50%); }
         .rope-line { position: absolute; width: 100%; height: 6px; background: linear-gradient(90deg, #00e5ff, #ff0055); top: 50%; transform: translateY(-50%); box-shadow: 0 0 10px #fff, 0 0 20px rgba(0,229,255,0.5); }
         .marker { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 0; height: 0; border-left: 12px solid transparent; border-right: 12px solid transparent; border-bottom: 24px solid #ffea00; filter: drop-shadow(0 0 6px #ffea00); }
         
-        /* 绳子两端的运动员 */
-        .pullers { position: absolute; top: 50%; transform: translateY(-60%); font-size: 55px; font-weight: bold; }
-        .pullers.blue-pullers { right: 50%; margin-right: 15px; color: var(--blue-glow); text-shadow: 0 0 10px var(--blue-glow); }
-        .pullers.red-pullers { left: 50%; margin-left: 15px; transform: translateY(-60%) scaleX(-1); color: var(--red-glow); text-shadow: 0 0 10px var(--red-glow); }
+        /* 拔河选手图片核心样式 */
+        .pullers { position: absolute; top: 50%; transform: translateY(-50%); display: flex; gap: 4px; }
+        .pullers.blue-pullers { right: 50%; margin-right: 15px; }
+        .pullers.red-pullers { left: 50%; margin-left: 15px; }
+        .puller-img { width: 52px; height: 52px; object-fit: contain; filter: drop-shadow(0 0 6px var(--blue-glow)); }
+        .red-pullers .puller-img { filter: drop-shadow(0 0 6px var(--red-glow)) scaleX(-1); }
 
         /* 单侧错题独立冰封效果 */
-        .ice-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, rgba(0, 184, 212, 0.15) 0%, rgba(0, 229, 255, 0.3) 100%);
-            backdrop-filter: blur(4px) saturate(160%); -webkit-backdrop-filter: blur(4px) saturate(160%);
-            border: 4px solid #81d4fa; display: none; flex-direction: column; justify-content: center; align-items: center;
-            z-index: 100; pointer-events: auto; cursor: not-allowed; animation: iceFreeze 0.2s ease-out;
-        }
+        .ice-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(0, 184, 212, 0.15) 0%, rgba(0, 229, 255, 0.3) 100%); backdrop-filter: blur(4px) saturate(160%); -webkit-backdrop-filter: blur(4px) saturate(160%); border: 4px solid #81d4fa; display: none; flex-direction: column; justify-content: center; align-items: center; z-index: 100; pointer-events: auto; cursor: not-allowed; animation: iceFreeze 0.2s ease-out; }
         @keyframes iceFreeze { 0% { opacity: 0; } 100% { opacity: 1; } }
-        .ice-card {
-            background: rgba(6, 9, 25, 0.9); padding: 12px 25px; border-radius: 12px;
-            border: 2px solid var(--blue-glow); box-shadow: 0 0 25px rgba(0,229,255,0.6); text-align: center;
-        }
+        .ice-card { background: rgba(6, 9, 25, 0.9); padding: 15px 25px; border-radius: 12px; border: 2px solid var(--blue-glow); box-shadow: 0 0 25px rgba(0,229,255,0.6); text-align: center; display: flex; flex-direction: column; align-items: center; }
+        
+        /* 冰冻图片样式 */
+        .ice-img { width: 60px; height: 60px; object-fit: contain; filter: drop-shadow(0 0 8px #00e5ff); margin-bottom: 5px; }
+        .red-side .ice-img { filter: drop-shadow(0 0 8px #ff0055); }
 
-        /* 答题正误闪烁馈送 */
+        /* 答题反馈动画 */
         @keyframes flashGreen { 0% { background-color: rgba(57, 255, 20, 0.3); } 100% { background-color: transparent; } }
         @keyframes flashRed { 0% { background-color: rgba(255, 0, 85, 0.3); } 100% { background-color: transparent; } }
         .flash-correct { animation: flashGreen 0.4s ease-out; }
@@ -253,29 +237,26 @@
 </head>
 <body>
 
-    <audio id="bgm-player" src="bgm.mp3" loop></audio>
-
     <div class="arcade-frame">
         <div class="arcade-header">
             <button class="home-btn" onclick="location.reload()">🏠 主页</button>
             <div class="header-title">
-                <span class="gamepad-icon">🎮</span>
+                <img src="gamepad.jpeg" class="gamepad-icon" alt="🎮">
                 <span>TUG: 语文双人赛</span>
-                <span class="gamepad-icon">🎮</span>
+                <img src="gamepad.jpeg" class="gamepad-icon" alt="🎮">
             </div>
             <div class="winner-badge-box">
                 <div class="winner-text-badge">WINNER<br>WINNER</div>
-                <span class="trophy-icon">🏆</span>
             </div>
         </div>
 
         <div id="setup-screen">
             <div class="top-bar">
                 <label for="csv-file" class="upload-box">
-                    <div style="font-size: 36px;">🌐</div>
+                    <div style="font-size: 32px;">📁</div>
                     <div>
-                        <div class="upload-title">云端实时题库状态</div>
-                        <div class="upload-sub" id="file-status">正在链接高维数据中心...</div>
+                        <div class="upload-title">导入 CSV 题库文件</div>
+                        <div class="upload-sub" id="file-status">正在读取本地记忆元件...</div>
                     </div>
                 </label>
                 <input type="file" id="csv-file" accept=".csv" style="display:none;" onchange="loadCSV(event)">
@@ -284,7 +265,10 @@
             <div class="middle-container">
                 <div id="step-grade" class="step-section">
                     <h2 class="step-title">🕹 步骤一：请选择挑战年级</h2>
-                    <div class="blocks-container">
+                    <div class="blocks-container grid-grade-layout">
+                        <button class="btn-3d btn-g1" onclick="selectGrade('1')">一年级</button>
+                        <button class="btn-3d btn-g2" onclick="selectGrade('2')">二年级</button>
+                        <button class="btn-3d btn-g3" onclick="selectGrade('3')">三年级</button>
                         <button class="btn-3d btn-g4" onclick="selectGrade('4')">四年级</button>
                         <button class="btn-3d btn-g5" onclick="selectGrade('5')">五年级</button>
                         <button class="btn-3d btn-g6" onclick="selectGrade('6')">六年级</button>
@@ -293,12 +277,8 @@
 
                 <div id="step-category" class="step-section" style="display: none;">
                     <h2 class="step-title" id="cat-title">🕹 步骤二：请选择词汇类型</h2>
-                    <div class="blocks-container">
-                        <button class="btn-3d btn-c1" onclick="selectCategory('成语')">成语挑战</button>
-                        <button class="btn-3d btn-c2" onclick="selectCategory('词语')">词语填充</button>
-                        <button class="btn-3d btn-c3" onclick="selectCategory('同义词')">同义词对决</button>
-                        <button class="btn-3d btn-c4" onclick="selectCategory('反义词')">反义词博弈</button>
-                    </div>
+                    <div class="blocks-container" id="category-buttons-container">
+                        </div>
                     <button class="home-btn" style="margin-top: 30px;" onclick="goBack('grade')">返回上一级</button>
                 </div>
 
@@ -320,8 +300,8 @@
             <div class="panel player-panel blue-side" id="blue-panel">
                 <div class="ice-overlay" id="blue-ice">
                     <div class="ice-card">
-                        <div style="font-size: 40px; text-shadow:0 0 10px #00e5ff;">🥶 ❄️</div>
-                        <div style="font-size: 18px; font-weight:bold; color:#00e5ff; margin-top:5px;">系统阻断：锁定 2 秒</div>
+                        <img src="snowflake.jpeg" class="ice-img" alt="❄️">
+                        <div style="font-size: 18px; font-weight:bold; color:#00e5ff;">系统阻断：锁定 2 秒</div>
                     </div>
                 </div>
                 <div class="player-header">一队 (蓝方) <div class="score-circle" id="blue-score-display">0</div></div>
@@ -342,9 +322,15 @@
                     <div class="center-line"></div>
                     <div class="rope-area" id="rope">
                         <div class="rope-line"></div>
-                        <div class="pullers blue-pullers">🧍‍♂️🧍‍♂️</div>
+                        <div class="pullers blue-pullers">
+                            <img src="diamond.jpeg" class="puller-img" alt="💎">
+                            <img src="diamond.jpeg" class="puller-img" alt="💎">
+                        </div>
                         <div class="marker"></div>
-                        <div class="pullers red-pullers">🧍‍♂️🧍‍♂️</div>
+                        <div class="pullers red-pullers">
+                            <img src="diamond.jpeg" class="puller-img" alt="💎">
+                            <img src="diamond.jpeg" class="puller-img" alt="💎">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -352,8 +338,8 @@
             <div class="panel player-panel red-side" id="red-panel">
                 <div class="ice-overlay" id="red-ice">
                     <div class="ice-card">
-                        <div style="font-size: 40px; text-shadow:0 0 10px #ff0055;">🥶 ❄️</div>
-                        <div style="font-size: 18px; font-weight:bold; color:#ff0055; margin-top:5px;">系统阻断：锁定 2 秒</div>
+                        <img src="snowflake.jpeg" class="ice-img" alt="❄️">
+                        <div style="font-size: 18px; font-weight:bold; color:#ff0055;">系统阻断：锁定 2 秒</div>
                     </div>
                 </div>
                 <div class="player-header">二队 (红方) <div class="score-circle" id="red-score-display">0</div></div>
@@ -376,74 +362,53 @@
     </div>
 
     <script>
-        // ==========================================
-        // 🚀 相对路径加载机制：免配置，直接读取仓库同级 question.csv
-        // ==========================================
-        const GITHUB_CSV_URL = "question.csv";
-
-        const commonChars = "天地玄黄宇宙洪荒日月盈仄辰宿列张寒来暑往秋收冬藏闰余成岁律吕调阳云腾致雨露结为霜金生丽水玉出昆冈剑号巨阙珠称夜光果珍李柰菜重芥姜海咸河淡鳞潜羽翔龙师火帝鸟官人皇始制文字乃服衣裳推位让国有虞陶唐吊民伐罪周发殷汤坐朝问道垂拱平章爱育黎首臣伏戎羌遐迩一体率宾归王鸣凤在竹白驹食场化被草木赖及万方盖此身发四大五常恭惟鞠养岂敢毁伤女慕贞洁男效才良知过必改得能莫忘罔谈彼短靡恃己长信使可覆器欲难量墨悲丝染诗赞羔羊景行维贤克念作圣德建名立形端表正空谷传声虚堂习听祸因恶积福缘善庆尺璧非宝寸阴是竞资父事君曰严与敬孝当竭力忠则尽命临深履薄夙兴温凊似兰斯馨如松之盛川流不息渊澄取映容止若思言辞安定笃初诚美慎终意令荣业所基籍甚无竟学优登仕摄职从政存以甘棠去而益咏乐殊贵贱礼别尊卑上和下睦夫唱谱随外受傅训入奉母仪诸姑伯叔犹子比儿孔怀兄弟同气连枝交友投分切磨箴规仁慈隐恻造次弗离节义廉退颠沛匪亏性静情逸心动神疲守真志满逐物意移坚持雅操好爵自縻都邑华夏东西二京背邙面洛浮渭据泾宫殿盘郁楼观飞惊图写禽兽画彩仙灵丙舍傍启甲帐对楹肆筵设席鼓瑟吹笙升阶纳陛弁转疑星右通广内left达承明既集坟典亦聚群英杜稿钟隶漆书壁经府罗将相路侠槐卿户封八县家给千兵高冠陪辇驱毂振缨世禄侈富车驾肥轻策功茂实勒碑刻铭磻溪伊尹佐时阿衡奄宅曲阜微旦孰营桓公匡合济弱扶倾绮回汉惠说感武丁俊乂密勿多士寔宁晋楚更霸赵魏困横假途灭虢践土会盟何遵约法韩弊烦刑起翦颇牧用军最精宣威沙漠驰誉丹青九州禹迹百郡秦并岳宗泰岱禅主云亭雁门紫塞鸡田赤城昆池碣石巨野洞庭旷远绵邈岩岫杳冥治本于农务兹稼瑎俶载南亩我艺黍稷税熟贡新劝赏黜陟孟轲敦素史鱼秉直庶几中庸劳谦谨敕聆音察理鉴貌辨色贻厥嘉猷勉其祗植省躬讥诫宠增抗极殆辱近耻林皋幸即两疏见机解组谁逼索居闲处沉默寂寥求古寻论散虑逍遥欣奏累遣戚谢欢招渠荷的历园莽抽条";
+        const commonChars = "天地玄黄宇宙洪荒日月盈仄辰宿列张寒来暑往秋收冬藏闰余成岁律吕调阳云腾致雨露结为霜金生丽水玉出昆冈剑号巨阙珠称夜光果珍李柰菜重芥姜海咸河淡鳞潜羽翔龙师火帝鸟官人皇始制文字乃服衣裳推位让国有虞陶唐吊民伐罪周发殷汤坐朝问道垂拱平章爱育黎首臣伏戎羌遐迩一体率宾归王鸣凤在竹白驹食场化被草木赖及万方盖此身发四大五常恭惟鞠养岂敢毁伤女慕贞洁男效才良知过必改得能莫忘罔谈彼短靡恃己长信使可覆器欲难量墨悲丝染诗赞羔羊景行维贤克念作圣德建名立形端表正空谷传声虚堂习听祸因恶积福缘善庆尺璧非宝寸阴是竞资父事君曰严与敬孝当竭力忠则尽命临深履薄夙兴温凊似兰斯馨如松之盛川流不息渊澄取映容止若思言辞安定笃初诚美慎终宜令荣业所基籍甚无竟学优登仕摄职从政存以甘棠去而益咏乐殊贵贱礼别尊卑上和下睦夫唱妇随外受傅训入奉母仪诸姑伯叔犹子比儿孔怀兄弟同气连枝交友投分切磨箴规仁慈隐恻造次弗离节义廉退颠沛匪亏性静情逸心动神疲守真志满逐物意移坚持雅操好爵自縻都邑华夏东西二京背邙面洛浮渭据泾宫殿盘郁楼观飞惊图写禽兽画彩仙灵丙舍傍启甲帐对楹肆筵设席鼓瑟吹笙升阶纳陛弁转疑星右通广内left;承明既集坟典亦聚群英杜稿钟隶漆书壁经府罗将相路侠槐卿户封八县家给千兵高冠陪辇驱毂振缨世禄侈富车驾肥轻策功茂实勒碑刻铭磻溪伊尹佐时阿衡奄宅曲阜微旦孰营桓公匡合济弱扶倾绮回汉惠说感武丁俊乂密勿多士寔宁晋楚更霸赵魏困横假途灭虢践土会盟何遵约法韩弊烦刑起翦颇牧用军最精宣威沙漠驰誉丹青九州禹迹百郡秦并岳宗泰岱禅主云亭雁门紫塞鸡田赤城昆池碣石巨野洞庭旷远绵邈岩岫杳冥治本于农务兹稼瑡俶载南亩我艺黍稷税熟贡新劝赏黜陟孟轲敦素史鱼秉直庶几中庸劳谦谨敕聆音察理鉴貌辨色贻厥嘉猷勉其祗植省躬讥诫宠增抗极殆辱近耻林皋幸即两疏见机解组谁逼索居闲处沉默寂寥求古寻论散虑逍遥欣奏累遣戚谢欢招渠荷的历园莽抽条";
         
         let globalCSVBank = []; 
         let parsedList = [];
         let currentGrade = "";
         let currentCategory = "";
-        
+        let gradeCategories = {};
+
         let blueScore = 0, redScore = 0, timeLeft = 45, timerInterval;
         let blueCurrentQ = null, redCurrentQ = null;
         let blueCurrentInput = [], redCurrentInput = [];
         let blueFrozen = false, redFrozen = false;
 
         window.addEventListener('DOMContentLoaded', () => {
-            loadRemoteCSV();
+            try {
+                const savedBank = localStorage.getItem('tugOfWarQuizBank');
+                if (savedBank) { globalCSVBank = JSON.parse(savedBank); }
+                
+                const savedCats = localStorage.getItem('tugOfWarCategories');
+                if (savedCats) { 
+                    gradeCategories = JSON.parse(savedCats); 
+                } else {
+                    for(let g = 1; g <= 6; g++) {
+                        gradeCategories[g.toString()] = ["成语", "词语", "同义词", "反义词"];
+                    }
+                    localStorage.setItem('tugOfWarCategories', JSON.stringify(gradeCategories));
+                }
+            } catch (e) { console.error(e); }
+            updateFileStatus();
         });
 
-        // 强力去缓存异步数据加载
-        async function loadRemoteCSV() {
+        function updateFileStatus() {
             const statusEl = document.getElementById('file-status');
-            statusEl.innerHTML = `⏳ 正在请求云端矩阵，实时同步最新题库源...`;
-            statusEl.style.color = "#00e5ff";
-            
-            try {
-                // 通过动态追加随机时间戳，完全摧毁浏览器缓存机制
-                const response = await fetch(`${GITHUB_CSV_URL}?t=${Date.now()}`);
-                if (!response.ok) throw new Error("HTTP 状态异常");
-                
-                const text = await response.text();
-                const lines = text.split(/\r\n|\n/);
-                globalCSVBank = [];
-                
-                for (let i = 1; i < lines.length; i++) {
-                    let line = lines[i].trim(); if(!line) continue;
-                    let parts = line.split(',');
-                    if (parts.length >= 3) {
-                        let contentPart = parts.slice(2).join(',').replace(/^"|"$/g, '');
-                        globalCSVBank.push({ 
-                            grade: parts[0].trim(), 
-                            category: parts[1].trim(), 
-                            content: contentPart.trim() 
-                        });
-                    }
-                }
-                
-                statusEl.innerHTML = `✅ 题库热同步成功！(已加载 ${globalCSVBank.length} 道最新命题)`;
+            if (globalCSVBank && globalCSVBank.length > 0) {
+                statusEl.innerHTML = `✅ 已加载云端记忆元件！(共 ${globalCSVBank.length} 题) [点击覆盖]`;
                 statusEl.style.color = "#39ff14";
-                
-                localStorage.setItem('tugOfWarQuizBank', JSON.stringify(globalCSVBank));
-                if(currentGrade && currentCategory) updatePreviewUI();
-            } catch (error) {
-                console.error("云端加载失败，尝试本地记忆:", error);
-                statusEl.innerHTML = `❌ 远程拉取未应答。正在降级搜寻本地离线核心...`;
-                statusEl.style.color = "#ff0055";
-                
-                try {
-                    const savedBank = localStorage.getItem('tugOfWarQuizBank');
-                    if (savedBank) { 
-                        globalCSVBank = JSON.parse(savedBank); 
-                        statusEl.innerHTML = `⚠️ 云端异常，已启用离线备用元件 (历史缓存共 ${globalCSVBank.length} 题)`;
-                        statusEl.style.color = "#ff9800";
-                    }
-                } catch (e) { console.error(e); }
+            } else {
+                statusEl.innerHTML = `无历史配置核心，请导入CSV或在此自由录入`;
+                statusEl.style.color = "#ff9800";
             }
+        }
+
+        function saveToLocalStorage() {
+            try {
+                localStorage.setItem('tugOfWarQuizBank', JSON.stringify(globalCSVBank));
+                updateFileStatus();
+            } catch (e) { console.error(e); }
         }
 
         function syncTextareaToGlobal() {
@@ -454,6 +419,7 @@
                 line = line.trim();
                 if(line) { globalCSVBank.push({ grade: currentGrade, category: currentCategory, content: line }); }
             }
+            saveToLocalStorage();
         }
 
         function selectGrade(grade) {
@@ -461,6 +427,75 @@
             document.getElementById('step-grade').style.display = 'none';
             document.getElementById('step-category').style.display = 'flex';
             document.getElementById('cat-title').innerText = `🕹 目标定位：${grade} 年级，请指定类别`;
+            renderCategories();
+        }
+
+        function renderCategories() {
+            const container = document.getElementById('category-buttons-container');
+            container.innerHTML = '';
+            
+            if (!gradeCategories[currentGrade]) {
+                gradeCategories[currentGrade] = ["成语", "词语", "同义词", "反义词"];
+            }
+            
+            const cats = gradeCategories[currentGrade];
+            const colors = ['btn-c1', 'btn-c2', 'btn-c3', 'btn-c4'];
+            
+            cats.forEach((cat, index) => {
+                let wrapper = document.createElement('div');
+                wrapper.style.position = 'relative';
+                wrapper.style.display = 'inline-block';
+                
+                let btn = document.createElement('button');
+                btn.className = `btn-3d ${colors[index % colors.length]}`;
+                btn.innerText = cat;
+                btn.onclick = () => selectCategory(cat);
+                
+                let delBtn = document.createElement('button');
+                delBtn.innerText = '✕';
+                delBtn.style.cssText = 'position:absolute; top:-8px; right:-8px; background:#ff0055; color:white; border:2px solid #fff; border-radius:50%; width:28px; height:28px; cursor:pointer; font-weight:bold; box-shadow:0 0 8px #ff0055; z-index:10; display:flex; align-items:center; justify-content:center; font-size:14px;';
+                delBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    if(confirm(`确定要从系统中完全移除“${cat}”关卡，并销毁该分类下所有存储的题目吗？`)) {
+                        deleteCategory(cat);
+                    }
+                };
+                
+                wrapper.appendChild(btn);
+                wrapper.appendChild(delBtn);
+                container.appendChild(wrapper);
+            });
+            
+            let addBtn = document.createElement('button');
+            addBtn.className = 'btn-3d';
+            addBtn.style.cssText = 'background:#263238; border:2px dashed #607d8b; box-shadow:none; color:#b0bec5; font-size:24px;';
+            addBtn.innerText = '➕ 新增关卡';
+            addBtn.onclick = addNewCategory;
+            container.appendChild(addBtn);
+        }
+
+        function deleteCategory(cat) {
+            gradeCategories[currentGrade] = gradeCategories[currentGrade].filter(c => c !== cat);
+            localStorage.setItem('tugOfWarCategories', JSON.stringify(gradeCategories));
+            globalCSVBank = globalCSVBank.filter(item => !(item.grade === currentGrade && item.category === cat));
+            saveToLocalStorage();
+            renderCategories();
+        }
+
+        function addNewCategory() {
+            let catName = prompt("请输入您想添加的新功能关卡名称（例：歇后语、古诗常识）：");
+            if (!catName) return;
+            catName = catName.trim();
+            if (catName === "") return;
+            
+            if (gradeCategories[currentGrade].includes(catName)) {
+                alert("抱歉，当前年级下已经存在该关卡名称，请勿重复创建。");
+                return;
+            }
+            
+            gradeCategories[currentGrade].push(catName);
+            localStorage.setItem('tugOfWarCategories', JSON.stringify(gradeCategories));
+            renderCategories();
         }
 
         function selectCategory(category) {
@@ -493,10 +528,19 @@
                     let line = lines[i].trim(); if(!line) continue;
                     let parts = line.split(',');
                     if (parts.length >= 3) {
-                        globalCSVBank.push({ grade: parts[0].trim(), category: parts[1].trim(), content: parts[2].trim() });
+                        let gradeStr = parts[0].trim();
+                        let catStr = parts[1].trim();
+                        let contentStr = parts.slice(2).join(',').replace(/^"|"$/g, '').trim();
+                        
+                        globalCSVBank.push({ grade: gradeStr, category: catStr, content: contentStr });
+                        
+                        if (!gradeCategories[gradeStr]) { gradeCategories[gradeStr] = ["成语", "词语", "同义词", "反义词"]; }
+                        if (!gradeCategories[gradeStr].includes(catStr)) { gradeCategories[gradeStr].push(catStr); }
                     }
                 }
-                document.getElementById('file-status').innerHTML = `手动覆盖成功，共注入 ${globalCSVBank.length} 道题目`;
+                localStorage.setItem('tugOfWarCategories', JSON.stringify(gradeCategories));
+                saveToLocalStorage();
+                alert(`🎮 核心数据对接完毕，共注入 ${globalCSVBank.length} 道题目！`);
                 if(currentGrade && currentCategory) updatePreviewUI();
                 event.target.value = ''; 
             };
@@ -509,20 +553,18 @@
             const ta = document.getElementById('qa-input');
             document.getElementById('preview-title').innerText = `⚡ 预备战斗：${currentGrade}年级 - ${currentCategory} 战役`;
 
-            if (currentCategory === "成语" || currentCategory === "词语") {
-                hintBox.innerHTML = "<strong>玩法逻辑：</strong>系统自动随机挖空一个汉字转为答题槽。可在下方实时修改。";
-            } else {
-                hintBox.innerHTML = "<strong>语法规则：</strong>数据必须满足 <code>核心词=配对词</code> (例: 勇敢=机智)。";
-            }
+            hintBox.innerHTML = "<strong>💡 自适应超级关卡录入法则：</strong><br>" +
+                                "1. <strong>单句直录模式</strong>（如：<code>精忠报国</code>）：系统运行随机挖空填字挑战。<br>" +
+                                "2. <strong>等号配对模式</strong>（如：<code>高兴=快乐</code>）：系统自动开启<strong>双向前后随机隐藏</strong>竞技！";
 
             const filtered = globalCSVBank.filter(item => item.grade === currentGrade && item.category === currentCategory);
             if(filtered.length > 0) {
                 let output = ""; filtered.forEach(item => { output += item.content + "\n"; });
                 ta.value = output;
-                hintBox.innerHTML += `<br><span style="color:var(--neon-green);">✨ 已载入记忆库，共计检测到 ${filtered.length} 道有效格斗命题。</span>`;
+                hintBox.innerHTML += `<br><span style="color:var(--neon-green);">✨ 已载入题库，共计检测到 ${filtered.length} 道有效命题。</span>`;
             } else {
                 ta.value = "";
-                hintBox.innerHTML += `<br><span style="color:var(--red-glow);">⚠️ 当前分类空白，请直接在下端录入数据，开始后自动完成高维锁定。</span>`;
+                hintBox.innerHTML += `<br><span style="color:var(--red-glow);">⚠️ 当前分类空白，请直接在下方录入数据。</span>`;
             }
         }
 
@@ -546,11 +588,11 @@
             parsedList = [];
             for(let line of lines) {
                 line = line.trim(); if(!line) continue;
-                if (currentCategory === "成语" || currentCategory === "词语") {
-                    parsedList.push(line);
-                } else {
+                if (line.includes('=')) {
                     let parts = line.split('=');
-                    if(parts.length === 2) parsedList.push({ w1: parts[0].trim(), w2: parts[1].trim() });
+                    if(parts.length === 2) parsedList.push({ type: 'match', w1: parts[0].trim(), w2: parts[1].trim() });
+                } else {
+                    parsedList.push({ type: 'fill', word: line });
                 }
             }
             if(parsedList.length === 0) { alert("当前战场缺乏命题核心，请补齐。"); return false; }
@@ -561,13 +603,6 @@
             syncTextareaToGlobal();
             if(!parseInput()) return;
             
-            // 🎵 播放背景音乐逻辑
-            const bgm = document.getElementById('bgm-player');
-            if (bgm) {
-                bgm.currentTime = 0; // 从头播放
-                bgm.play().catch(e => console.log("音频播放受到限制:", e));
-            }
-
             document.getElementById('setup-screen').style.display = 'none';
             document.getElementById('game-screen').style.display = 'flex';
             
@@ -587,20 +622,29 @@
             }, 1000);
         }
 
+        // ✨ 核心修改：大幅强化出题引擎，支持前后挖空双向打乱
         function generateQuestion() {
             const idx = Math.floor(Math.random() * parsedList.length);
             const item = parsedList[idx];
             let qText = "", ansText = "";
 
-            if (currentCategory === "成语" || currentCategory === "词语") {
-                const word = item;
+            if (item.type === 'fill') {
+                const word = item.word;
                 const blankIdx = Math.floor(Math.random() * word.length);
                 ansText = word[blankIdx];
                 qText = word.substring(0, blankIdx) + " _ " + word.substring(blankIdx + 1);
-            } else if (currentCategory === "同义词") {
-                qText = item.w1 + " = ?"; ansText = item.w2;
-            } else if (currentCategory === "反义词") {
-                qText = item.w1 + " × ?"; ansText = item.w2;
+            } else if (item.type === 'match') {
+                let symbol = "=";
+                if (currentCategory.includes("反")) symbol = "×";
+                
+                // 50% 几率隐藏右侧（后面部分），50% 几率隐藏左侧（前面部分）
+                if (Math.random() < 0.5) {
+                    qText = item.w1 + ` ${symbol} _`;
+                    ansText = item.w2;
+                } else {
+                    qText = `_ ${symbol} ` + item.w2;
+                    ansText = item.w1;
+                }
             }
             return { q: qText, a: ansText };
         }
@@ -614,7 +658,7 @@
 
         function getOptions(answerStr) {
             let options = answerStr.split('');
-            while(options.length < 12) {
+            while(options.length < 10) {
                 let char = commonChars[Math.floor(Math.random() * commonChars.length)];
                 if(!options.includes(char)) options.push(char);
             }
@@ -642,7 +686,9 @@
             let inputs = team === 'blue' ? blueCurrentInput : redCurrentInput;
             inputs.forEach((char, index) => {
                 let slot = document.createElement('div');
-                slot.className = 'slot'; slot.innerText = char;
+                slot.className = 'slot'; slot.style.width = (140 / inputs.length) + 'px'; 
+                slot.innerText = char;
+                slot.onclick = () => removeChar(team, index);
                 container.appendChild(slot);
             });
         }
@@ -657,6 +703,16 @@
                 btn.onclick = () => addChar(team, char);
                 container.appendChild(btn);
             });
+
+            let clearBtn = document.createElement('div');
+            clearBtn.className = 'key key-clear'; clearBtn.innerText = '❌';
+            clearBtn.onclick = () => clearAllInputs(team);
+            container.appendChild(clearBtn);
+
+            let enterBtn = document.createElement('div');
+            enterBtn.className = 'key key-enter'; enterBtn.innerText = '✔️';
+            enterBtn.onclick = () => submitAnswer(team);
+            container.appendChild(enterBtn);
         }
 
         function addChar(team, char) {
@@ -664,42 +720,28 @@
             if(team === 'red' && redFrozen) return;
 
             let inputs = team === 'blue' ? blueCurrentInput : redCurrentInput;
-            let qData = team === 'blue' ? blueCurrentQ : redCurrentQ;
             let emptyIdx = inputs.indexOf('');
-            
             if(emptyIdx !== -1) {
-                inputs[emptyIdx] = char;
+                inputs[emptyIdx] = char; 
                 renderSlots(team);
-                
-                if(char === qData.a[emptyIdx]) {
-                    if(!inputs.includes('')) {
-                        if(team === 'blue') blueScore++; else redScore++;
-                        showFlash(team, true); updateScores(); updateRope(); checkWin();
-                        setTimeout(() => loadQuestion(team), 150);
-                    }
-                } else {
-                    if(team === 'blue') {
-                        blueScore = Math.max(0, blueScore - 1);
-                        blueFrozen = true;
-                        document.getElementById('blue-ice').style.display = 'flex';
-                        setTimeout(() => {
-                            blueFrozen = false;
-                            document.getElementById('blue-ice').style.display = 'none';
-                            blueCurrentInput.fill(''); renderSlots('blue');
-                        }, 2000);
-                    } else {
-                        redScore = Math.max(0, redScore - 1);
-                        redFrozen = true;
-                        document.getElementById('red-ice').style.display = 'flex';
-                        setTimeout(() => {
-                            redFrozen = false;
-                            document.getElementById('red-ice').style.display = 'none';
-                            redCurrentInput.fill(''); renderSlots('red');
-                        }, 2000);
-                    }
-                    showFlash(team, false); updateScores(); updateRope();
-                }
+                if(!inputs.includes('')) { submitAnswer(team); }
             }
+        }
+
+        function removeChar(team, index) {
+            if(team === 'blue' && blueFrozen) return;
+            if(team === 'red' && redFrozen) return;
+
+            let inputs = team === 'blue' ? blueCurrentInput : redCurrentInput;
+            inputs[index] = ''; renderSlots(team);
+        }
+
+        function clearAllInputs(team) {
+            if(team === 'blue' && blueFrozen) return;
+            if(team === 'red' && redFrozen) return;
+
+            let inputs = team === 'blue' ? blueCurrentInput : redCurrentInput;
+            inputs.fill(''); renderSlots(team);
         }
 
         function showFlash(team, isCorrect) {
@@ -707,6 +749,42 @@
             panel.classList.remove('flash-correct', 'flash-wrong');
             void panel.offsetWidth; 
             panel.classList.add(isCorrect ? 'flash-correct' : 'flash-wrong');
+        }
+
+        function submitAnswer(team) {
+            if(team === 'blue' && blueFrozen) return;
+            if(team === 'red' && redFrozen) return;
+
+            let inputs = team === 'blue' ? blueCurrentInput : redCurrentInput;
+            let qData = team === 'blue' ? blueCurrentQ : redCurrentQ;
+            let answerStr = inputs.join('');
+
+            if(answerStr === qData.a) {
+                if(team === 'blue') blueScore++; else redScore++;
+                showFlash(team, true); updateScores(); updateRope(); checkWin();
+                setTimeout(() => loadQuestion(team), 150);
+            } else {
+                if(team === 'blue') {
+                    blueScore = Math.max(0, blueScore - 1);
+                    blueFrozen = true;
+                    document.getElementById('blue-ice').style.display = 'flex';
+                    setTimeout(() => {
+                        blueFrozen = false;
+                        document.getElementById('blue-ice').style.display = 'none';
+                        blueCurrentInput.fill(''); renderSlots('blue');
+                    }, 2000);
+                } else {
+                    redScore = Math.max(0, redScore - 1);
+                    redFrozen = true;
+                    document.getElementById('red-ice').style.display = 'flex';
+                    setTimeout(() => {
+                        redFrozen = false;
+                        document.getElementById('red-ice').style.display = 'none';
+                        redCurrentInput.fill(''); renderSlots('red');
+                    }, 2000);
+                }
+                showFlash(team, false); updateScores(); updateRope();
+            }
         }
 
         function updateScores() {
@@ -729,11 +807,6 @@
 
         function endGame() {
             clearInterval(timerInterval);
-
-            // 🎵 关闭背景音乐
-            const bgm = document.getElementById('bgm-player');
-            if (bgm) { bgm.pause(); }
-
             document.getElementById('result-screen').style.display = 'flex';
             document.getElementById('final-blue').innerText = blueScore;
             document.getElementById('final-red').innerText = redScore;
